@@ -1,6 +1,7 @@
 package main
 
 import (
+	"gingonic/migrations"
 	"gingonic/routes"
 	"os"
 
@@ -10,6 +11,8 @@ import (
 func main() {
 	routes.Router = gin.Default()
 	port := os.Getenv("PORT")
+
+	migrations.Migrate()
 
 	if port == "" {
 		port = "5000"
