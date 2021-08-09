@@ -15,17 +15,19 @@ type UserBody struct {
 
 func Login(c *gin.Context) {
 
-	var userBody UserBody
+	var userBody *UserBody
 
-	if err := c.ShouldBindBodyWith(&userBody, binding.JSON);err != nil {
+	if err := c.ShouldBindBodyWith(&userBody, binding.JSON);err != nil {		
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error":err,
-		})		
-	}
+			"error":"data invalid",
+			"debug":userBody,
+		})
+		return		
+	}	
 
 	exist,err,user := auth_query.Login(userBody.Username,userBody.Password)
 
-	if err == nil {
+	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error":err,
 		})	
