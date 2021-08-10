@@ -11,7 +11,7 @@ import (
 	"github.com/gin-gonic/gin/binding"
 )
 
-func Register(c *gin.Context) {
+func Register_c(c *gin.Context) {
 
 	var userBody core.UserBody_R
 
