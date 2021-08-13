@@ -19,6 +19,7 @@ type UserBody struct {
 type CustomClaim struct{
 	ID uint64 `json:"user_id"`
 	Username string `json:"username"`
+	Role bool `json:"role"`
 	jwt.StandardClaims
 }
 
@@ -53,6 +54,7 @@ func Login(c *gin.Context) {
 	claims := CustomClaim{
 		ID: user.ID,
 		Username: user.Username,
+		Role: user.Role,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(time.Hour * 4).Unix(),						
 		},
