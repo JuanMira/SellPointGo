@@ -41,7 +41,12 @@ func Register(user core.UserBody_R)(bool,error){
 		Email: user.Email,
 		Password: user.Password,
 		Birthday: user.Birthday,
-		LastLogin: time.Now(),		
+		LastLogin: time.Now(),
+		FirstName: user.FirstName,
+		LastName: user.LastName,
+		Phone: user.Phone,
+		CountryId: user.CountryId,
+		BillingAddress: user.BillingAddress,						
 	}	
 
 	db, err := services.ConnectDB()	

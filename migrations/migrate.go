@@ -10,8 +10,15 @@ func Migrate() {
 
 	if err != nil {
 		return
-	}
+	}	
 
-	db.AutoMigrate(&core.User{})
+	db.AutoMigrate(
+		&core.User{},
+		&core.Country{},
+		&core.Products{},
+		&core.Category{},
+		&core.Order{},
+		&core.OrderDetail{},
+	)
 
 }
