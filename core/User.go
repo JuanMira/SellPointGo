@@ -20,6 +20,7 @@ type User struct {
 	Birthday       string    `json:"birthday"`
 	LastLogin      time.Time `json:"last_login"`
 	Country        Country   `gorm:"foreignKey:CountryId"`
+	Role           bool      `gorm:"default:0"`
 }
 
 type UserBody_R struct {
