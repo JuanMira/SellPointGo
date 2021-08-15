@@ -16,6 +16,6 @@ func productRoutes() {
 		// all products true
 		productRoute.GET("/all", product_controller.StoreList_c)
 		// all products true/false
-		productRoute.GET("/")
+		productRoute.GET("/:category",product_controller.ListProductCategory)
 	}
 }
