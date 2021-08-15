@@ -13,6 +13,7 @@ import (
 type CustomClaim struct{
 	ID uint64 `json:"user_id"`
 	Username string `json:"username"`
+	Role bool `json:"role"`
 	jwt.StandardClaims
 }
 
