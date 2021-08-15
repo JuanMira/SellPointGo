@@ -8,6 +8,7 @@ go get -u gorm.io/gorm
 go get golang.org/x/crypto/bcrypt
 go get github.com/joho/godotenv
 go get github.com/golang-jwt/jwt/v4
+go get -u github.com/aws/aws-sdk-go/...
 
 #build command
 go build -o bin/application main.go
