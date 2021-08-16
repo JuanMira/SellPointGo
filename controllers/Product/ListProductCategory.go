@@ -17,6 +17,7 @@ func ListProductCategory(c *gin.Context) {
 		return
 	}
 
+	// message 
 	data, err := product_query.ListProductCategory(categoryId)
 
 	if err != nil {
