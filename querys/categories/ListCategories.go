@@ -3,17 +3,22 @@ package categories_query
 import (
 	"gingonic/core"
 	"gingonic/services"
+	"math"
 )
 
-func ListCategories() ([]core.Category,error) {
+func ListCategories(page string) ([]core.Category,error, int64) {
+	
+	db,err := services.ConnectDB()	
 	data := []core.Category{}
-	db,err := services.ConnectDB()
-
+	var count int64
 	if err != nil {
-		return data, err
+		return data, err, count
 	}
 
 	db.Find(&data)
+	db.Model(&core.Category{}).Count(&count)
 	
-	return data, nil
+	totalPages := int(math.Ceil(float64(count)/10))
+
+	return data, nil, int64(totalPages)
 }

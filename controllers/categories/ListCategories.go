@@ -8,7 +8,8 @@ import (
 )
 
 func ListCategories(c *gin.Context){
-	data,err := categories_query.ListCategories()
+	page := c.Query("page")
+	data,err, pages := categories_query.ListCategories(page)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -18,6 +19,7 @@ func ListCategories(c *gin.Context){
 	}
 
 	c.JSON(http.StatusAccepted, gin.H{
+		"totalPages":pages,
 		"data":data,
 	})
 }
