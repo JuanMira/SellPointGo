@@ -19,7 +19,10 @@ func ListProductPage(page string) ([]core.Products_Response,error, int64){
 		
 	db.Model(&core.Products{}).Select(
 		"products.id, products.name, products.price,products.descriptions,products.image,categories.name as category_name, products.stock",
-	).Joins("JOIN categories ON categories.id = products.category_id").Scan(&data)
+	).Joins("JOIN categories ON categories.id = products.category_id").Where(
+		"products.status = ?",
+		true,
+	).Scan(&data)
 
 	db.Model(&core.Products{}).Count(&count)
 

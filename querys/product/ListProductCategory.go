@@ -20,8 +20,9 @@ func ListProductCategory(categoryId string, page string) ([]core.Products_Respon
 	db.Model(&core.Products{}).Select(
 		"products.id, products.name, products.price,products.descriptions,products.image,categories.name as category_name, products.stock",
 	).Joins("JOIN categories ON categories.id = products.category_id").Where(
-		"products.category_id = ?",
+		"products.category_id = ? AND products.status = ?",
 		categoryId,
+		true,
 	).Scan(&data)
 
 	db.Model(&core.Products{}).Joins(

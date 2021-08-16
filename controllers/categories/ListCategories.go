@@ -22,4 +22,4 @@ func ListCategories(c *gin.Context){
 		"totalPages":pages,
 		"data":data,
 	})
-}
+} 
