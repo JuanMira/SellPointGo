@@ -8,7 +8,10 @@ import (
 )
 
 func StoreList_c(c *gin.Context) {
-	data, err := product_query.ListProductPage()
+
+	page := c.Query("page")
+
+	data, err, pages := product_query.ListProductPage(page)
 	if err != nil {
 		c.JSON(http.StatusBadRequest,gin.H{
 			"error":"No data to fetch",
@@ -17,6 +20,7 @@ func StoreList_c(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusAccepted,gin.H{
+		"totalPages":pages,
 		"data":data,
 	})
 	return

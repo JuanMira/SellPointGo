@@ -7,8 +7,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func ListCategoriesTrue(c *gin.Context) {
-	data, err := categories_query.ListCategoriesTrue()
+func ListCategoriesTrue(c *gin.Context) {		
+
+	page := c.Query("page")
+
+	data, err, pages := categories_query.ListCategoriesTrue(page)
 
 	if err != nil{
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -18,6 +21,7 @@ func ListCategoriesTrue(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusAccepted, gin.H{
+		"totalPages":pages,
 		"data":data,
 	})
 	return

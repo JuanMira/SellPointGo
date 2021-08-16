@@ -9,7 +9,7 @@ import (
 
 func ListProductCategory(c *gin.Context) {
 	categoryId := c.Param("category")
-
+	page := c.Query("page")
 	if categoryId == ""{
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error":"Param category is required",
@@ -18,7 +18,7 @@ func ListProductCategory(c *gin.Context) {
 	}
 
 	// message 
-	data, err := product_query.ListProductCategory(categoryId)
+	data, err, pages := product_query.ListProductCategory(categoryId, page)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest,gin.H{
@@ -28,6 +28,7 @@ func ListProductCategory(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusAccepted, gin.H{
+		"totalPages":pages,
 		"data":data,
 	})
 	return

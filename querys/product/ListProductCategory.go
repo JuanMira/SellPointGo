@@ -3,15 +3,18 @@ package product_query
 import (
 	"gingonic/core"
 	"gingonic/services"
+	"math"
+	"strconv"
 )
 
-func ListProductCategory(categoryId string) ([]core.Products_Response,error){
+func ListProductCategory(categoryId string, page string) ([]core.Products_Response,error, int64){
 	db,err := services.ConnectDB()
-
+	
 	data := []core.Products_Response{}
+	var count int64 
 
 	if err != nil {
-		return data, err
+		return data, err, count
 	}					
 		
 	db.Model(&core.Products{}).Select(
@@ -21,6 +24,17 @@ func ListProductCategory(categoryId string) ([]core.Products_Response,error){
 		categoryId,
 	).Scan(&data)
 
+	db.Model(&core.Products{}).Joins(
+		"JOIN categories ON categories.id = products.category_id",
+	).Count(&count)
 
-	return data, nil
+	pageOffset,_ := strconv.Atoi(page)
+
+	if pageOffset == 0{
+		pageOffset = 1
+	}
+
+	totalPages := int(math.Ceil(float64(count)/float64(10)))
+
+	return data, nil, int64(totalPages)
 }
