@@ -14,7 +14,7 @@ type Products struct {
 	Descriptions string      `json:"productDescription"`
 	Image        string      `json:"productImage"`
 	CategoryId   uint64      `json:"categoryId"`
-	Category     []*Category `gorm:"many2many:product_categories;foreignKey:CategoryId"`
+	Category     []*Category `gorm:"many2many:product_categories;foreignKey:CategoryId" json:",omitempty"`
 	Stock        int         `gorm:"not null;default:0" json:"productStock"`
 	Status       bool        `gorm:"default:true"`
 }
@@ -26,7 +26,7 @@ type Product_R struct {
 	Descriptions string  `json:"productDescription" form:"productDescription"`
 	Image        string  `json:"productImage" form:"productImage"`
 	CategoryId   uint64  `json:"productCategoryId" form:"productCategoryId" `
-	CreateDate   time.Time
+	CreateDate   time.Time `json:",omitempty"`
 	Stock        int  `json:"productStock" form:"productStock"`	
 }
 
