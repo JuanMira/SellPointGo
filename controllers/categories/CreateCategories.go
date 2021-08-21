@@ -1,7 +1,6 @@
 package categories_controller
 
 import (
-	"fmt"
 	"gingonic/core"
 	categories_query "gingonic/querys/categories"
 	"net/http"
@@ -20,10 +19,6 @@ func CreateCategory(c *gin.Context){
 		})
 		return
 	}
-
-	//debug
-	fmt.Print("[debug]")
-	fmt.Println(body)
 	
 	ok, err := categories_query.CreateCategory(body)
 

@@ -12,6 +12,20 @@ func orderRoutes() {
 			"/",
 			middleware.VerifyToken(),
 			order_controller.InsertOrder,
-		)		
+		)
+
+		orderRoute.PUT(
+			"/:id",
+			middleware.VerifyToken(),
+			middleware.VerifyAdmin(),
+			order_controller.UpdateController,
+		)
+		
+		orderRoute.GET(
+			"/",
+			middleware.VerifyToken(),
+			order_controller.ListOrder,
+		)
+
 	}
 }

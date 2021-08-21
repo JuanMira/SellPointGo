@@ -4,6 +4,7 @@ import (
 	"gingonic/core"
 	"gingonic/services"
 	"math"
+	"strconv"
 )
 
 func ListProductPage(page string) ([]core.Products_Response,error, int64){
@@ -17,12 +18,16 @@ func ListProductPage(page string) ([]core.Products_Response,error, int64){
 		return data, err, count
 	}					
 		
+	pageOffset, _ := strconv.Atoi(page)
+	
+	offset := (pageOffset - 1) * 10
+
 	db.Model(&core.Products{}).Select(
 		"products.id, products.name, products.price,products.descriptions,products.image,categories.name as category_name, products.stock",
 	).Joins("JOIN categories ON categories.id = products.category_id").Where(
 		"products.status = ?",
 		true,
-	).Scan(&data)
+	).Offset(offset).Limit(10).Scan(&data)
 
 	db.Model(&core.Products{}).Count(&count)
 

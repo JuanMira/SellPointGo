@@ -18,7 +18,6 @@ func Register_c(c *gin.Context) {
 	if err := c.ShouldBindBodyWith(&userBody, binding.JSON);err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error":"data invalid",
-			"message-debug":"data json not parsed",
 		})	
 		fmt.Println(userBody)
 		return 	

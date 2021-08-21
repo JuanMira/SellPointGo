@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 	"time"
@@ -33,9 +32,7 @@ func VerifyToken() gin.HandlerFunc {
 			c.JSON(http.StatusBadRequest, gin.H{
 				"error":"Token wrong pls login",				
 			})
-
-			//debug
-			fmt.Println(err)			
+						
 			c.Abort()
 			return
 		}

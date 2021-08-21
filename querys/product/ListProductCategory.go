@@ -15,25 +15,29 @@ func ListProductCategory(categoryId string, page string) ([]core.Products_Respon
 
 	if err != nil {
 		return data, err, count
-	}					
-		
-	db.Model(&core.Products{}).Select(
-		"products.id, products.name, products.price,products.descriptions,products.image,categories.name as category_name, products.stock",
-	).Joins("JOIN categories ON categories.id = products.category_id").Where(
-		"products.category_id = ? AND products.status = ?",
-		categoryId,
-		true,
-	).Scan(&data)
-
-	db.Model(&core.Products{}).Joins(
-		"JOIN categories ON categories.id = products.category_id",
-	).Count(&count)
+	}
 
 	pageOffset,_ := strconv.Atoi(page)
 
 	if pageOffset == 0{
 		pageOffset = 1
 	}
+
+	offset := (pageOffset - 1 ) * 10
+
+	db.Model(&core.Products{}).Select(
+		"products.id, products.name, products.price,products.descriptions,products.image,categories.name as category_name, products.stock",
+	).Joins("JOIN categories ON categories.id = products.category_id").Where(
+		"products.category_id = ? AND products.status = ?",
+		categoryId,
+		true,
+	).Offset(offset).Limit(10).Scan(&data)
+
+	db.Model(&core.Products{}).Joins(
+		"JOIN categories ON categories.id = products.category_id",
+	).Count(&count)
+
+
 
 	totalPages := int(math.Ceil(float64(count)/float64(10)))
 

@@ -15,7 +15,7 @@ func UpdateCategory(idCategory string, bodyCategory core.Category_Response) (boo
 
 	var category core.Category
 
-	db.Debug().First(&category, idCategory)
+	db.First(&category, idCategory)
 	category.Name = bodyCategory.Name
 	category.Description = bodyCategory.Description
 	db.Save(&category)

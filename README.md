@@ -1,3 +1,7 @@
+# Description project
+
+
+
 # project structure
 
 controllers = store api logic
@@ -10,5 +14,7 @@ routers = routes REST API
 
 services = store configuration and setting to used in project from any used service
 
+querys = store the database querys 
 
+migrations = makes the migrations obviusly :DD
 
