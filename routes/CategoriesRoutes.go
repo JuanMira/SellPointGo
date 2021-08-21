@@ -6,7 +6,7 @@ import (
 )
 
 func categoriesRoutes() {
-	categoriesRoute := Router.Group("/api/category")
+	categoriesRoute := router.Group("/api/category")
 	{
 		categoriesRoute.GET("/",
 			middleware.VerifyToken(),

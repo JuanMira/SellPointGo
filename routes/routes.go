@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var Router *gin.Engine
+var router *gin.Engine
 
 func InitializeRoutes() {
 
@@ -12,4 +12,5 @@ func InitializeRoutes() {
 	authRoutes()
 	productRoutes()
 	categoriesRoutes()
+	orderRoutes()
 }
