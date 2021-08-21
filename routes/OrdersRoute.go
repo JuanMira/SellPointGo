@@ -27,5 +27,11 @@ func orderRoutes() {
 			order_controller.ListOrder,
 		)
 
+		orderRoute.DELETE(
+			"/:id",
+			middleware.VerifyToken(),
+			order_controller.DeleteOrder,
+		)
+
 	}
 }

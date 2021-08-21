@@ -24,7 +24,7 @@ func ListOrder(page string) ([]core.Order,int64,error){
 
 	offset := (pageOffset - 1 ) * 10
 
-	db.Where("").Offset(offset).Limit(10).Find(&data)
+	db.Where("status = ?",true).Offset(offset).Limit(10).Find(&data)
 	db.Model(&core.Order{}).Count(&count)
 
 	totalPages := int(math.Ceil(float64(count)/10))
