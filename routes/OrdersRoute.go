@@ -6,12 +6,12 @@ import (
 )
 
 func orderRoutes() {
-	orderRoute := router.Group("/api/order")
+	orderRoute := Router.Group("/api/order")
 	{
 		orderRoute.POST(
 			"/",
 			middleware.VerifyToken(),
 			order_controller.InsertOrder,
-		)
+		)		
 	}
 }

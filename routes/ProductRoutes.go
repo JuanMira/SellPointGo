@@ -6,7 +6,7 @@ import (
 )
 
 func productRoutes() {
-	productRoute := router.Group("/api/product")
+	productRoute := Router.Group("/api/product")
 	{
 		productRoute.POST("/",
 			middleware.VerifyToken(),

@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var router *gin.Engine
+var Router *gin.Engine
 
 func InitializeRoutes() {
 
