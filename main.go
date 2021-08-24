@@ -20,7 +20,7 @@ func main() {
 	frontLink := os.Getenv("FRONT_LINK")
 
 	routes.Router.Use(cors.New(cors.Config{
-		AllowOrigins: []string{"192.168.0.15",frontLink},
+		AllowOrigins: []string{"*",frontLink},
 	}))
 
 	
