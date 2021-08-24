@@ -6,7 +6,7 @@ import (
 
 var Router *gin.Engine
 
-func InitializeRoutes() {
+func InitializeRoutes() {	
 
 	//setup global middleware
 	authRoutes()
