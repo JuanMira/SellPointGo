@@ -9,6 +9,5 @@ type OrderDetail struct {
 	ProductId uint64   `json:"productId"`
 	Price     float64  `json:"orderDetailPrice"`
 	Quantity  int      `json:"orderDetailQuantity"`
-	Order     Order    `gorm:"foreignKey:OrderId"`
-	Product   Products `gorm:"foreignKey:ProductId"`
+	Status bool        `gorm:"default:true" json:"orderDetailStatus"`
 }

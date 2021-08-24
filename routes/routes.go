@@ -13,4 +13,5 @@ func InitializeRoutes() {
 	productRoutes()
 	categoriesRoutes()
 	orderRoutes()
+	orderDetailRoute()
 }
